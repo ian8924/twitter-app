@@ -3,8 +3,9 @@ extends layouts/login-layout.pug
 block content
     .loginContainer 
         h1 login 
+        p.errMessage #{errorMessage}
         form(method="post")
-            input( type="text", name="loginUsername",placeholder="username or email",required="")
+            input( type="text", name="loginUsername",placeholder="username or email",value=logUsername required="")
             input( type="text", name="loginPassword",placeholder="password",required="")
             input( type="submit", value="Login")
         a(href="/register") Need an account ? Register here. 

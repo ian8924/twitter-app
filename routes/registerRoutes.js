@@ -1,19 +1,22 @@
 const e = require("express");
-var express = require("express");
+const bcrypt = require("bcrypt");
+
 const User = require("../schemas/UserSchema");
+
+var express = require("express");
 var app = express();
 
 app.use(express.json()); // for parsing application/json
 app.use(express.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
-
-app.set("view engine", "pug");
-app.set("views", "views");
 
 app.use(
   express.urlencoded({
     extended: true,
   })
 );
+
+app.set("view engine", "pug");
+app.set("views", "views");
 
 app.get("/", (req, res, next) => {
   res.status(200).render("register");
@@ -42,8 +45,12 @@ app.post("/", async (req, res, next) => {
     if (user === null) {
       // no user found
       var data = req.body;
+
+      data.password = await bcrypt.hash(password, 10);
       User.create(data).then((user) => {
         console.log(user);
+        req.session.user = user;
+        return res.redirect("/");
       });
     } else {
       // user found
