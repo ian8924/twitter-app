@@ -3,6 +3,7 @@ const app = express();
 const port = 3003;
 const middleware = require("./middleware");
 const path = require("path");
+const mongoose = require("./database");
 
 const server = app.listen(port, () =>
   console.log("server listen on port" + port)
