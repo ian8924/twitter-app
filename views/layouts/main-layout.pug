@@ -4,17 +4,32 @@ html(lang="en")
         meta(http-equiv="X-UA-Compatible", content="IE=edge")
         meta(name="viewport", content="width=device-width, initial-scale=1.0")
         link(href='https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css', rel='stylesheet', integrity='sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We', crossorigin='anonymous')
+        link(rel='stylesheet' href='https://use.fontawesome.com/releases/v5.15.4/css/all.css' integrity='sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm' crossorigin='anonymous')
         link(rel="stylesheet", href="/css/main.css")
         title #{pageTitle} 
     body
         .wrapper
             .row 
                 nav.col-2
-                    span Number
+                    a.blue(href="/") 
+                        i.fas.fa-dove
+                    a(href="/") 
+                        i.fas.fa-home
+                    a(href="/search") 
+                        i.fas.fa-search
+                    a(href="/notifications") 
+                        i.fas.fa-bell
+                    a(href="/messages") 
+                        i.fas.fa-envelope
+                    a(href="/profile") 
+                        i.fas.fa-user
+                    a(href="/logout") 
+                        i.fas.fa-sign-out-alt
                 .mainSectionContainer.col-10.col-md-8
                     block content
-                    
                 .d-none.d-md-block.col-2.col-lg-4
                     span third colum
+        script(src='https://kit.fontawesome.com/62a11461dd.js' crossorigin='anonymous')
+
 
         

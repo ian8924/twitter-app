@@ -7,7 +7,7 @@ const mongoose = require("./database");
 const session = require("express-session");
 
 const server = app.listen(port, () =>
-  console.log("server listen on port" + port)
+  console.log("server listen on port " + port)
 );
 
 app.set("view engine", "pug");
@@ -23,11 +23,13 @@ app.use(
 );
 
 //Routes
-const loginRoutes = require("./routes/loginRoutes");
-const registerRoutes = require("./routes/registerRoutes");
+const loginRoute = require("./routes/loginRoutes");
+const registerRoute = require("./routes/registerRoutes");
+const logoutRoute = require("./routes/logout");
 
-app.use("/login", loginRoutes);
-app.use("/register", registerRoutes);
+app.use("/login", loginRoute);
+app.use("/register", registerRoute);
+app.use("/logout", logoutRoute);
 
 app.get("/", middleware.requireLogin, (req, res, next) => {
   var payload = {
@@ -36,11 +38,3 @@ app.get("/", middleware.requireLogin, (req, res, next) => {
   };
   res.status(200).render("home", payload);
 });
-
-// app.get("/login", middleware.requireLogin, (req, res, next) => {
-//   var payload = {
-//     pageTitle: "login",
-//   };
-
-//   res.status(200).render("login", payload);
-// });
