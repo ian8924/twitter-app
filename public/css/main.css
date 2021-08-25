@@ -1,6 +1,13 @@
+* {
+  outline: none !important;
+}
+
 :root {
   --blue: #1fa2f1;
+  --blueLight: #9bd1f9;
   --buttonHoverBg: #d4edff;
+  --lightGrey: rgb(230, 2236, 240);
+  --spacing: 15px;
 }
 
 a {
@@ -10,6 +17,12 @@ a {
 a:hover {
   color: inherit;
   text-decoration: none;
+}
+
+h1 {
+  font-size: 19px;
+  font-weight: 800;
+  margin: 0;
 }
 
 nav {
@@ -27,6 +40,7 @@ nav a {
   padding: 10px;
   align-items: center;
   justify-content: center;
+  color: #212529;
 }
 
 nav a.blue {
@@ -40,5 +54,64 @@ nav a:hover {
 }
 
 .mainSectionContainer {
-  background-color: blue;
+  padding: 0;
+  border-left: 1px solid var(--lightGrey);
+  border-right: 1px solid var(--lightGrey);
+  display: flex;
+  flex-direction: column;
+}
+
+.titleContainer {
+  height: 53px;
+  padding: 0 var(--spacing);
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid var(--lightGrey);
+  flex-shrink: 0;
+}
+
+.titleContainer h1 {
+  flex: 1;
+}
+
+.postFormContainer {
+  display: flex;
+  padding: var(--spacing);
+  border-bottom: 10px solid rgb(230, 236, 240);
+  flex-shrink: 0;
+}
+
+.userImageContainer {
+  width: 50px;
+  height: 50px;
+}
+
+.userImageContainer img {
+  width: 100%;
+  border-radius: 50%;
+  background-color: white;
+}
+
+.textAreaContainer {
+  flex: 1;
+  padding-left: var(--spacing);
+}
+
+.textAreaContainer textarea {
+  width: 100%;
+  border: none;
+  resize: none;
+  font-size: 19px;
+}
+
+#submitPostButton {
+  background-color: var(--blue);
+  color: white;
+  border: none;
+  border-radius: 40px;
+  padding: 7px 15px;
+}
+
+#submitPostButton:disabled {
+  background-color: var(--blueLight);
 }

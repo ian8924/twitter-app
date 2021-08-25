@@ -22,19 +22,24 @@ app.use(
   })
 );
 
-//Routes
+// Routes
 const loginRoute = require("./routes/loginRoutes");
 const registerRoute = require("./routes/registerRoutes");
 const logoutRoute = require("./routes/logout");
+
+// Api routes
+const postsApiRoutes = require("./routes/api/posts");
 
 app.use("/login", loginRoute);
 app.use("/register", registerRoute);
 app.use("/logout", logoutRoute);
 
+app.use("/api/posts", postsApiRoutes);
+
 app.get("/", middleware.requireLogin, (req, res, next) => {
   var payload = {
-    pageTitle: "home",
+    pageTitle: "Home",
     userLoggedIn: req.session.user,
   };
-  res.status(200).render("home", payload);
+  res.status(200).render("Home", payload);
 });
