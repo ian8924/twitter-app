@@ -12,7 +12,16 @@ app.use(
   })
 );
 
-app.get("/", (req, res, next) => {});
+app.get("/", (req, res, next) => {
+  Post.find()
+    .populate("postedBy")
+    .sort({ createdAt: -1 })
+    .then((results) => res.status(200).send(results))
+    .catch((error) => {
+      console.log(error);
+      res.status(400);
+    });
+});
 
 app.post("/", async (req, res, next) => {
   if (!req.body.content) {
