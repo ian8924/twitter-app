@@ -69,4 +69,48 @@ app.put("/:id/likes", async (req, res, next) => {
   res.status(200).send(post);
 });
 
+app.post("/:id/retweet", async (req, res, next) => {
+  var postId = req.params.id;
+  var userId = req.session.user._id;
+  // Try and delete retweet
+  var deletePost = await Post.findOneAndDelete({
+    postBy: userId,
+    retweetData: postId,
+  }).catch((error) => {
+    console.log(error);
+    res.sendStatus(400);
+  });
+
+  var repost = deletePost;
+
+  if (repost === null) {
+    repost = await Post.create({
+      repost = await Post.create({postBy:userId,repostData:postId})
+      .catch(error=>{
+        console.log(error)
+        res.sendStatus(400)
+        })
+    });
+  }
+
+  var option = deletePost!==null ? "$pull" : "$addToSet";
+  // insert user like
+  req.session.user = await User.findByIdAndUpdate(
+    userId,
+    { [option]: { retweet: postId._id } },
+    { new: true }
+  ).catch((error) => {
+    console.log(error);
+    res.sendStatus(400);
+  });
+
+  // insert post like
+  var post = await Post.findByIdAndUpdate(
+    postId,
+    { [option]: { likes: userId } },
+    { new: true }
+  );
+  res.status(200).send(post);
+});
+
 module.exports = app;
