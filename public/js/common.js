@@ -55,12 +55,12 @@ $(document).on("click", ".retweetButton", (event) => {
     type: "POST",
     success: (postData) => {
       console.log(postData);
-      //   button.find("span").text(postData.likes.length || "");
-      //   if (postData.likes.includes(userLogginedIn._id)) {
-      //     button.addClass("active");
-      //   } else {
-      //     button.removeClass("active");
-      //   }
+      button.find("span").text(postData.retweetUsers.length || "");
+      if (postData.retweetUsers.includes(userLogginedIn._id)) {
+        button.addClass("active");
+      } else {
+        button.removeClass("active");
+      }
     },
   });
 });
@@ -74,15 +74,34 @@ function getPostIdFromElement(element) {
 }
 
 function createPostHtml(postData) {
+  if (postData == null) return alert("post object is null");
+  var isRetweet = postData.retweetData !== undefined;
+  var retweetedBy = isRetweet ? postData.postedBy.username : null;
+  postData = isRetweet ? postData.retweetData : postData;
   var postedBy = postData.postedBy;
+  if (!postedBy._id) {
+    return console.log("User Object not populate");
+  }
   var displayNmae = `${postedBy.firstName} ${postedBy.lastName}`;
   var datetamp = postData.createdAt;
   var timestamp = timeDifference(new Date(), new Date(datetamp));
   var likeButtonActiveClass = postData.likes.includes(userLogginedIn._id)
     ? "active"
     : "";
+  var retweetButtonActiveClass = postData.retweetUsers.includes(
+    userLogginedIn._id
+  )
+    ? "active"
+    : "";
+  var retweetText = "";
+  if (isRetweet) {
+    retweetText = `<span>Retweet By  <a href='/profile/${retweetedBy}'>@${retweetedBy}</a> </span>`;
+  }
 
   return `<div class='post' data-id='${postData._id}'>
+                <div class="postActionContainer">
+                  ${retweetText}
+                </div>
                 <div class='mainContentContainer'>
                     <div class='userImageContainer'>
                         <img src='${postedBy.profilePic}' >
@@ -105,8 +124,11 @@ function createPostHtml(postData) {
                                 </button>
                             </div>
                             <div class='postButtonContainer green'>
-                                <button class='retweetButton retweet'>
+                                <button class='retweetButton ${retweetButtonActiveClass}'>
                                     <i class="fas fa-retweet"></i>
+                                    <span>
+                                    ${postData.retweetUsers.length || ""}
+                                    </span>
                                 </button>
                             </div>
                             <div class='postButtonContainer red'>

@@ -14,9 +14,13 @@ app.use(
 
 app.get("/", (req, res, next) => {
   Post.find()
+    .populate("retweetData")
     .populate("postedBy")
     .sort({ createdAt: -1 })
-    .then((results) => res.status(200).send(results))
+    .then(async (results) => {
+      results = await User.populate(results, { path: "retweetData.postedBy" });
+      res.status(200).send(results);
+    })
     .catch((error) => {
       console.log(error);
       res.status(400);
@@ -74,42 +78,43 @@ app.post("/:id/retweet", async (req, res, next) => {
   var userId = req.session.user._id;
   // Try and delete retweet
   var deletePost = await Post.findOneAndDelete({
-    postBy: userId,
+    postedBy: userId,
     retweetData: postId,
   }).catch((error) => {
     console.log(error);
     res.sendStatus(400);
   });
 
+  var option = deletePost !== null ? "$pull" : "$addToSet";
+
   var repost = deletePost;
 
-  if (repost === null) {
-    repost = await Post.create({
-      repost = await Post.create({postBy:userId,repostData:postId})
-      .catch(error=>{
-        console.log(error)
-        res.sendStatus(400)
-        })
-    });
+  if (repost == null) {
+    repost = await Post.create({ postedBy: userId, retweetData: postId }).catch(
+      (error) => {
+        res.sendStatus(400);
+      }
+    );
   }
 
-  var option = deletePost!==null ? "$pull" : "$addToSet";
-  // insert user like
+  // insert user retweets
   req.session.user = await User.findByIdAndUpdate(
     userId,
-    { [option]: { retweet: postId._id } },
+    { [option]: { retweets: repost._id } },
+    { new: true }
+  ).catch((error) => {
+    res.sendStatus(400);
+  });
+
+  // insert post retweetUsers
+  var post = await Post.findByIdAndUpdate(
+    postId,
+    { [option]: { retweetUsers: userId } },
     { new: true }
   ).catch((error) => {
     console.log(error);
     res.sendStatus(400);
   });
-
-  // insert post like
-  var post = await Post.findByIdAndUpdate(
-    postId,
-    { [option]: { likes: userId } },
-    { new: true }
-  );
   res.status(200).send(post);
 });
 
