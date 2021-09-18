@@ -12,19 +12,16 @@ app.use(
   })
 );
 
-app.get("/", (req, res, next) => {
-  Post.find()
-    .populate("retweetData")
-    .populate("postedBy")
-    .sort({ createdAt: -1 })
-    .then(async (results) => {
-      results = await User.populate(results, { path: "retweetData.postedBy" });
-      res.status(200).send(results);
-    })
-    .catch((error) => {
-      console.log(error);
-      res.status(400);
-    });
+app.get("/", async (req, res, next) => {
+  var results = await getPosts({});
+  res.status(200).send(results);
+});
+
+app.get("/:id", async (req, res, next) => {
+  var postId = req.params.id;
+  var results = await getPosts({ _id: postId });
+  results = results[0];
+  return res.status(200).send(results);
 });
 
 app.post("/", async (req, res, next) => {
@@ -36,6 +33,10 @@ app.post("/", async (req, res, next) => {
     content: req.body.content,
     postedBy: req.session.user,
   };
+
+  if (req.body.replyTo) {
+    postData.replyTo = req.body.replyTo;
+  }
 
   Post.create(postData)
     .then(async (newPost) => {
@@ -117,5 +118,18 @@ app.post("/:id/retweet", async (req, res, next) => {
   });
   res.status(200).send(post);
 });
+
+async function getPosts(filter) {
+  var results = await Post.find(filter)
+    .populate("retweetData")
+    .populate("postedBy")
+    .populate("replyTo")
+    .sort({ createdAt: -1 })
+    .catch((error) => {
+      console.log(error);
+    });
+  results = await User.populate(results, { path: "replyTo.postedBy" });
+  return User.populate(results, { path: "retweetData.postedBy" });
+}
 
 module.exports = app;

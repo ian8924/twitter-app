@@ -102,6 +102,16 @@ nav a:hover {
   height: 50px;
 }
 
+.modal .postFormContainer {
+  border: none;
+  padding: 0;
+  padding-top: var(--spacing);
+}
+
+.modal .post {
+  padding: 0 0 var(--spacing) 0;
+}
+
 .userImageContainer img {
   width: 100%;
   border-radius: 50%;
@@ -208,4 +218,12 @@ nav a:hover {
   font-size: 13px;
   color: var(--greyText);
   margin-bottom: 5px;
+}
+
+.replyFlag {
+  margin-bottom: 5px;
+}
+
+.replyFlag a {
+  color: var(--blue);
 }
