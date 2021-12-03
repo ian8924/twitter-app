@@ -227,3 +227,8 @@ nav a:hover {
 .replyFlag a {
   color: var(--blue);
 }
+
+.post.largeFont .postBody,
+.post.largeFont .postFooter {
+  font-size: 23px;
+}
