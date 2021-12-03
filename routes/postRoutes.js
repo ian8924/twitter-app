@@ -17,16 +17,13 @@ app.set("view engine", "pug");
 app.set("views", "views");
 
 app.get("/:id", (req, res, next) => {
-    console.log(req.params.id)
-    var payload = {
-        pageTitle : "View post",
-        userLoggedIn: req.session.user,
-        userLoggInedJs: JSON.stringify(req.session.user),
-        postId: req.params.id
-    }
-    res.status(200).render("postPage", payload);
+  var payload = {
+    pageTitle: "View post",
+    userLoggedIn: req.session.user,
+    userLoggInedJs: JSON.stringify(req.session.user),
+    postId: req.params.id,
+  };
+  res.status(200).render("postPage", payload);
 });
-
-
 
 module.exports = app;
