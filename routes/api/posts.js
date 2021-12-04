@@ -130,6 +130,12 @@ app.post("/:id/retweet", async (req, res, next) => {
   res.status(200).send(post);
 });
 
+app.delete("/:id", (req, res, next) => {
+  Post.findByIdAndDelete(req.params.id)
+    .then(() => res.sendStatus(202))
+    .catch(() => res.sendStatus(400));
+});
+
 async function getPosts(filter) {
   var results = await Post.find(filter)
     .populate("retweetData")

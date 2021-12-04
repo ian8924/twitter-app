@@ -54,6 +54,27 @@ $("#replyModal").on("show.bs.modal", (event) => {
   });
 });
 
+$("#deleteModal").on("show.bs.modal", (event) => {
+  var button = $(event.relatedTarget);
+  var postId = getPostIdFromElement(button);
+  $("#submitDeleteButton").data("id", postId);
+});
+
+$("#submitDeleteButton").click((e) => {
+  var id = $(e.target).data("id");
+
+  $.ajax({
+    url: `/api/posts/${id}`,
+    type: "DELETE",
+    success: (data, status, xhr) => {
+      if (xhr.status !== 202) {
+        alert("not delete yet");
+      }
+      location.reload();
+    },
+  });
+});
+
 $(document).on("click", ".likeButton", (event) => {
   var button = $(event.target);
   var postId = getPostIdFromElement(button);
@@ -159,6 +180,12 @@ function createPostHtml(postData, largeFont = false) {
     </div>`;
   }
 
+  var buttons = "";
+  if (postData.postedBy._id == userLogginedIn._id) {
+    buttons = `<button data-id="${postData._id}" data-toggle="modal" data-target="#deleteModal">
+                <i class='fas fa-times'></i>
+              </button>`;
+  }
   return `<div class='post ${largeFontClass}' data-id='${postData._id}'>
                 <div class="postActionContainer">
                   ${retweetText} 
@@ -174,6 +201,7 @@ function createPostHtml(postData, largeFont = false) {
                             }'>${displayNmae}</a>
                             <span class="username">@${postedBy.username}</span>
                             <span class="date">${timestamp}</span>
+                            ${buttons}
                         </div>
                         ${replyFlag}
                         <div class='postBody'>
