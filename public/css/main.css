@@ -5,6 +5,7 @@
 :root {
   --blue: #1fa2f1;
   --blueLight: #9bd1f9;
+  --blueBackground: rgba(212, 237, 255, 0.6);
   --buttonHoverBg: #d4edff;
   --lightGrey: rgb(230, 2236, 240);
   --spacing: 15px;
@@ -239,4 +240,75 @@ nav a:hover {
 
 .postContentContainer .header .date {
   flex: 1;
+}
+
+.prfileHeaderContainer .coverPhotoContainer {
+  height: 180px;
+  background-color: var(--blue);
+  position: relative;
+}
+
+.prfileHeaderContainer .userImageContainer {
+  width: 132px;
+  height: 132px;
+  margin-left: var(--spacing);
+  position: absolute;
+  bottom: -66px;
+}
+
+.prfileHeaderContainer .userImageContainer img {
+  border: 4px #fff solid;
+}
+
+.profileButtonsContainer {
+  text-align: right;
+  padding: var(--spacing);
+  min-height: 66px;
+}
+
+.profileButton,
+.followButton {
+  border: 1px solid var(--blue);
+  color: var(--blue);
+  font-weight: bold;
+  padding: 5px 15px;
+  font-size: 16px;
+  border-radius: 60px;
+  display: inline-block;
+  line-height: 16px;
+  margin-left: var(--spacing);
+}
+
+.profilebutton:hover,
+.followButton:hover {
+  background-color: var(--blueBackground);
+}
+
+.followButton.following {
+  background-color: var(--blue);
+  color: #fff;
+}
+
+.prfileHeaderContainer .userDetailsContainer {
+  display: flex;
+  flex-direction: column;
+  padding: 0 var(--spacing);
+}
+
+.followersContainer .vlue {
+  margin-right: 5px;
+  font-weight: bold;
+}
+
+.followersContainer a {
+  text-decoration-line: none;
+  margin-right: 15px;
+}
+
+.followersContainer a:hover {
+  border-bottom: 1px solid #000;
+}
+
+.followersContainer a span:not(.value) {
+  color: var(--greyText);
 }

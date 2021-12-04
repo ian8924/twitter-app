@@ -1,0 +1,33 @@
+extends layouts/main-layout.pug
+
+block content
+    if !profileUser
+        span Check your URL 
+    else
+        .prfileHeaderContainer
+            .coverPhotoContainer
+                .userImageContainer 
+                    img(src=profileUser.profilePic, alt="User Profile Image")
+            .profileButtonsContainer
+                if profileUser._id != userLoggedIn._id
+                    a.profileButton(href=`/messages/${profileUser._id}`) 
+                        i.fas.fa-envelope
+                    +createFollowButton(profileUser,true)
+            .userDetailsContainer 
+                span.displayName #{profileUser.firstName} #{profileUser.lastName}
+                span.username @#{profileUser.username} 
+                span.description #{profileUser.description} 
+
+                .followersContainer
+                    a(href=`/profile/${profileUser.username}/following`)
+                        span.value #{0}
+                        span Following 
+                    a(href=`/profile/${profileUser.username}/following`)
+                        span.value #{0}
+                        span Followers
+
+
+block scripts 
+    script(src="/js/profile.js") 
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js', integrity='sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q', crossorigin='anonymous')
+    script(src='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js', integrity='sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl', crossorigin='anonymous')
