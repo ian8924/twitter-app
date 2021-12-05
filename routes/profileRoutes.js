@@ -33,6 +33,18 @@ app.get("/:username/replies", async (req, res, next) => {
   res.status(200).render("profilePage", payload);
 });
 
+app.get("/:username/following", async (req, res, next) => {
+  let payload = await getUser(req.params.username, req.session.user);
+  payload.selectedTab = "following";
+  res.status(200).render("followersAndFollowing", payload);
+});
+
+app.get("/:username/followers", async (req, res, next) => {
+  let payload = await getUser(req.params.username, req.session.user);
+  payload.selectedTab = "followers";
+  res.status(200).render("followersAndFollowing", payload);
+});
+
 async function getUser(username, userLoggedIn) {
   var userFind = await User.findOne({ username: username });
 

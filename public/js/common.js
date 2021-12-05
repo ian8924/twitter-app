@@ -125,6 +125,39 @@ $(document).on("click", ".post", (event) => {
   }
 });
 
+$(document).on("click", ".followButton", (event) => {
+  var button = $(event.target);
+  var userID = button.data().user;
+  console.log(userID);
+  $.ajax({
+    url: `/api/users/${userID}/follow`,
+    type: "PUT",
+    success: (data, status, xhr) => {
+      if (xhr.status === 404) {
+        alert("User not found");
+        return;
+      }
+
+      var diff = 1;
+      if (data.following && data.following.includes(userID)) {
+        button.addClass("following");
+        button.text("Following");
+      } else {
+        button.removeClass("following");
+        button.text("Follow");
+        diff = -1;
+      }
+
+      var followersLabel = $("#followersValue");
+      if (followersLabel.length !== 0) {
+        var followersText = followersLabel.text();
+        followersText = parseInt(followersText);
+        followersLabel.text(followersText + diff);
+      }
+    },
+  });
+});
+
 function getPostIdFromElement(element) {
   var isRoot = element.hasClass("post");
   var rootElement = isRoot === true ? element : element.closest(".post");

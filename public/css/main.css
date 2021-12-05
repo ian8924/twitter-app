@@ -71,6 +71,10 @@ nav a:hover {
   border-radius: 50%;
 }
 
+.wrapper > .row {
+  margin: 0;
+}
+
 .mainSectionContainer {
   padding: 0;
   border-left: 1px solid var(--lightGrey);
@@ -338,4 +342,28 @@ nav a:hover {
 .tab:hover {
   color: var(--blue);
   background-color: var(--blueBackground);
+}
+
+.followersContainer a .value {
+  margin-right: 5px;
+}
+
+.noResult {
+  padding: var(--spacing);
+}
+
+.resultsContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.resultsContainer .user {
+  padding: var(--spacing);
+  display: flex;
+  border-bottom: 1px solid var(--lightGrey);
+}
+
+.user .userDetailsContainer {
+  flex: 1;
+  padding: 0 var(--spacing);
 }
