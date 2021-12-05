@@ -17,8 +17,19 @@ app.use(
 app.set("view engine", "pug");
 app.set("views", "views");
 
+app.get("/", async (req, res, next) => {
+  let payload = await getUser(req.session.user.username, req.session.user);
+  res.status(200).render("profilePage", payload);
+});
+
 app.get("/:username", async (req, res, next) => {
   let payload = await getUser(req.params.username, req.session.user);
+  res.status(200).render("profilePage", payload);
+});
+
+app.get("/:username/replies", async (req, res, next) => {
+  let payload = await getUser(req.params.username, req.session.user);
+  payload.selectedTab = "replies";
   res.status(200).render("profilePage", payload);
 });
 
