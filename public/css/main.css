@@ -1,369 +1,371 @@
 * {
-  outline: none !important;
+    outline: none !important;
 }
 
 :root {
-  --blue: #1fa2f1;
-  --blueLight: #9bd1f9;
-  --blueBackground: rgba(212, 237, 255, 0.6);
-  --buttonHoverBg: #d4edff;
-  --lightGrey: rgb(230, 2236, 240);
-  --spacing: 15px;
-  --greyText: rgb(101, 119, 134);
-  --greyButtonText: rgba(0, 0, 0, 0.34);
-  --red: rgb(226, 34, 94);
-  --green: rgb(23, 191, 99);
-  --greenBackground: rgba(23, 191, 99, 0.1);
+    --blue: #1fa2f1;
+    --blueLight: #9bd1f9;
+    --blueBackground: rgba(212, 237, 255, 0.6);
+    --buttonHoverBg: #d4edff;
+    --lightGrey: rgb(230, 2236, 240);
+    --spacing: 15px;
+    --greyText: rgb(101, 119, 134);
+    --greyButtonText: rgba(0, 0, 0, 0.34);
+    --red: rgb(226, 34, 94);
+    --green: rgb(23, 191, 99);
+    --greenBackground: rgba(23, 191, 99, 0.1);
 }
 
 a {
-  color: inherit;
-  text-decoration: none;
+    color: inherit;
+    text-decoration: none;
 }
 
 a:hover {
-  color: inherit;
-  text-decoration: none;
+    color: inherit;
+    text-decoration: none;
 }
 
 button {
-  background-color: transparent;
-  color: var(--greyButtonText);
-  border: none;
+    background-color: transparent;
+    color: var(--greyButtonText);
+    border: none;
 }
 
 button i,
 button span {
-  pointer-events: none;
+    pointer-events: none;
 }
 
 h1 {
-  font-size: 19px;
-  font-weight: 800;
-  margin: 0;
+    font-size: 19px;
+    font-weight: 800;
+    margin: 0;
 }
 
 nav {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    height: 100%;
 }
 
 nav a {
-  width: 55px;
-  height: 55px;
-  text-decoration: none;
-  display: flex;
-  padding: 10px;
-  align-items: center;
-  justify-content: center;
-  color: #212529;
+    width: 55px;
+    height: 55px;
+    text-decoration: none;
+    display: flex;
+    padding: 10px;
+    align-items: center;
+    justify-content: center;
+    color: #212529;
 }
 
 nav a.blue {
-  color: var(--blue);
+    color: var(--blue);
 }
 
 nav a:hover {
-  background-color: var(--buttonHoverBg);
-  color: var(--blue);
-  border-radius: 50%;
+    background-color: var(--buttonHoverBg);
+    color: var(--blue);
+    border-radius: 50%;
 }
 
 .wrapper > .row {
-  margin: 0;
+    margin: 0;
 }
 
 .mainSectionContainer {
-  padding: 0;
-  border-left: 1px solid var(--lightGrey);
-  border-right: 1px solid var(--lightGrey);
-  display: flex;
-  flex-direction: column;
+    padding: 0;
+    border-left: 1px solid var(--lightGrey);
+    border-right: 1px solid var(--lightGrey);
+    display: flex;
+    flex-direction: column;
 }
 
 .titleContainer {
-  height: 53px;
-  padding: 0 var(--spacing);
-  display: flex;
-  align-items: center;
-  border-bottom: 1px solid var(--lightGrey);
-  flex-shrink: 0;
+    height: 53px;
+    padding: 0 var(--spacing);
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid var(--lightGrey);
+    flex-shrink: 0;
 }
 
 .titleContainer h1 {
-  flex: 1;
+    flex: 1;
 }
 
 .postFormContainer {
-  display: flex;
-  padding: var(--spacing);
-  border-bottom: 10px solid rgb(230, 236, 240);
-  flex-shrink: 0;
+    display: flex;
+    padding: var(--spacing);
+    border-bottom: 10px solid rgb(230, 236, 240);
+    flex-shrink: 0;
 }
 
 .userImageContainer {
-  width: 50px;
-  height: 50px;
+    width: 50px;
+    height: 50px;
 }
 
 .modal .postFormContainer {
-  border: none;
-  padding: 0;
-  padding-top: var(--spacing);
+    border: none;
+    padding: 0;
+    padding-top: var(--spacing);
 }
 
 .modal .post {
-  padding: 0 0 var(--spacing) 0;
+    padding: 0 0 var(--spacing) 0;
 }
 
 .userImageContainer img {
-  width: 100%;
-  border-radius: 50%;
-  background-color: white;
+    width: 100%;
+    border-radius: 50%;
+    background-color: white;
 }
 
 .textAreaContainer {
-  flex: 1;
-  padding-left: var(--spacing);
+    flex: 1;
+    padding-left: var(--spacing);
 }
 
 .textAreaContainer textarea {
-  width: 100%;
-  border: none;
-  resize: none;
-  font-size: 19px;
+    width: 100%;
+    border: none;
+    resize: none;
+    font-size: 19px;
 }
 
 #submitPostButton {
-  background-color: var(--blue);
-  color: white;
-  border: none;
-  border-radius: 40px;
-  padding: 7px 15px;
+    background-color: var(--blue);
+    color: white;
+    border: none;
+    border-radius: 40px;
+    padding: 7px 15px;
 }
 
 #submitPostButton:disabled {
-  background-color: var(--blueLight);
+    background-color: var(--blueLight);
 }
 
 .post {
-  display: flex;
-  flex-direction: column;
-  padding: var(--spacing);
-  border-bottom: 1px solid var(--lightGrey);
-  flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    padding: var(--spacing);
+    border-bottom: 1px solid var(--lightGrey);
+    flex-shrink: 0;
 }
 
 .mainContentContainer {
-  flex: 1;
-  display: flex;
+    flex: 1;
+    display: flex;
 }
 
 .postContentContainer {
-  padding-left: var(--spacing);
-  display: flex;
-  flex-direction: column;
-  flex: 1;
+    padding-left: var(--spacing);
+    display: flex;
+    flex-direction: column;
+    flex: 1;
 }
 
 .username,
 .date {
-  color: var(--greyText);
+    color: var(--greyText);
 }
 
 .displayName {
-  font-weight: bold;
+    font-weight: bold;
 }
 
 .postFooter {
-  display: flex;
-  align-items: center;
+    display: flex;
+    align-items: center;
 }
 
 .postFooter .postButtonContainer {
-  flex: 1;
-  display: flex;
+    flex: 1;
+    display: flex;
 }
 
 .postFooter .postButtonContainer button {
-  padding: 0 5px;
+    padding: 0 5px;
 }
 
 .header a:hover {
-  text-decoration: underline;
+    text-decoration: underline;
 }
 
 .header a,
 .header span {
-  padding-right: 5px;
+    padding-right: 5px;
 }
 
 .postButtonContainer button:hover {
-  background-color: #d4edff;
-  color: var(--blue);
-  border-radius: 50%;
+    background-color: #d4edff;
+    color: var(--blue);
+    border-radius: 50%;
 }
 
 .postButtonContainer.red button.active {
-  color: var(--red);
+    color: var(--red);
 }
 
 .postButtonContainer.green button.active {
-  color: var(--green);
+    color: var(--green);
 }
 
 .postButtonContainer.green button:hover {
-  color: var(--green);
-  background-color: var(--greenBackground);
+    color: var(--green);
+    background-color: var(--greenBackground);
 }
 
 .postActionContainer {
-  padding-left: 35px;
-  font-size: 13px;
-  color: var(--greyText);
-  margin-bottom: 5px;
+    padding-left: 35px;
+    font-size: 13px;
+    color: var(--greyText);
+    margin-bottom: 5px;
 }
 
 .replyFlag {
-  margin-bottom: 5px;
+    margin-bottom: 5px;
 }
 
 .replyFlag a {
-  color: var(--blue);
+    color: var(--blue);
 }
 
 .post.largeFont .postBody,
 .post.largeFont .postFooter {
-  font-size: 23px;
+    font-size: 23px;
 }
 
 .postContentContainer .header {
-  display: flex;
+    display: flex;
 }
 
 .postContentContainer .header .date {
-  flex: 1;
+    flex: 1;
 }
 
 .prfileHeaderContainer .coverPhotoContainer {
-  height: 180px;
-  background-color: var(--blue);
-  position: relative;
+    height: 180px;
+    background-color: var(--blue);
+    position: relative;
 }
 
 .prfileHeaderContainer .userImageContainer {
-  width: 132px;
-  height: 132px;
-  margin-left: var(--spacing);
-  position: absolute;
-  bottom: -66px;
+    width: 132px;
+    height: 132px;
+    margin-left: var(--spacing);
+    position: absolute;
+    bottom: -66px;
 }
 
 .prfileHeaderContainer .userImageContainer img {
-  border: 4px #fff solid;
+    border: 4px #fff solid;
 }
 
 .profileButtonsContainer {
-  text-align: right;
-  padding: var(--spacing);
-  min-height: 66px;
+    text-align: right;
+    padding: var(--spacing);
+    min-height: 66px;
 }
 
 .profileButton,
 .followButton {
-  border: 1px solid var(--blue);
-  color: var(--blue);
-  font-weight: bold;
-  padding: 5px 15px;
-  font-size: 16px;
-  border-radius: 60px;
-  display: inline-block;
-  line-height: 16px;
-  margin-left: var(--spacing);
+    border: 1px solid var(--blue);
+    color: var(--blue);
+    font-weight: bold;
+    padding: 5px 15px;
+    font-size: 16px;
+    border-radius: 60px;
+    display: inline-block;
+    line-height: 16px;
+    margin-left: var(--spacing);
 }
 
 .profilebutton:hover,
 .followButton:hover {
-  background-color: var(--blueBackground);
+    background-color: var(--blueBackground);
 }
 
 .followButton.following {
-  background-color: var(--blue);
-  color: #fff;
+    background-color: var(--blue);
+    color: #fff;
 }
 
 .prfileHeaderContainer .userDetailsContainer {
-  display: flex;
-  flex-direction: column;
-  padding: 0 var(--spacing);
+    display: flex;
+    flex-direction: column;
+    padding: 0 var(--spacing);
 }
 
 .followersContainer .vlue {
-  margin-right: 5px;
-  font-weight: bold;
+    margin-right: 5px;
+    font-weight: bold;
 }
 
 .followersContainer a {
-  text-decoration-line: none;
-  margin-right: 15px;
+    text-decoration-line: none;
+    margin-right: 15px;
 }
 
 .followersContainer a:hover {
-  border-bottom: 1px solid #000;
+    border-bottom: 1px solid #000;
 }
 
 .followersContainer a span:not(.value) {
-  color: var(--greyText);
+    color: var(--greyText);
 }
 
 .tabsContainer {
-  display: flex;
-  border-bottom: 1px solid var(--lightGrey);
-  flex-shrink: 0;
+    display: flex;
+    border-bottom: 1px solid var(--lightGrey);
+    flex-shrink: 0;
 }
 
 .tab {
-  flex: 1;
-  display: flex;
-  height: 52px;
-  justify-content: center;
-  align-items: center;
-  color: var(--greyText);
-  font-weight: bold;
+    flex: 1;
+    display: flex;
+    height: 52px;
+    justify-content: center;
+    align-items: center;
+    color: var(--greyText);
+    font-weight: bold;
 }
 
 .tab.active {
-  color: var(--blue);
-  border-bottom: 2px solid var(--blue);
+    color: var(--blue);
+    border-bottom: 2px solid var(--blue);
 }
 
 .tab:hover {
-  color: var(--blue);
-  background-color: var(--blueBackground);
+    color: var(--blue);
+    background-color: var(--blueBackground);
 }
 
 .followersContainer a .value {
-  margin-right: 5px;
+    margin-right: 5px;
 }
 
 .noResult {
-  padding: var(--spacing);
+    padding: var(--spacing);
 }
 
 .resultsContainer {
-  display: flex;
-  flex-direction: column;
+    display: flex;
+    flex-direction: column;
 }
 
 .resultsContainer .user {
-  padding: var(--spacing);
-  display: flex;
-  border-bottom: 1px solid var(--lightGrey);
+    padding: var(--spacing);
+    display: flex;
+    border-bottom: 1px solid var(--lightGrey);
 }
 
 .user .userDetailsContainer {
-  flex: 1;
-  padding: 0 var(--spacing);
+    flex: 1;
+    padding: 0 var(--spacing);
+    display: flex;
+    justify-content: space-between;
 }
