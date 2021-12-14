@@ -22,11 +22,11 @@ function outputUsers(results, container) {
 function createUserHtml(userData, showFollowButton) {
     let name = `${userData.firstName} ${userData.lastName}`;
     var followButton = "";
-    var isFollowing = userLogginedIn.following && userLogginedIn.following.includes(userData._id);
+    var isFollowing = userLoggedIn.following && userLoggedIn.following.includes(userData._id);
     var text = isFollowing ? "Following" : "Follow";
     var buttonClass = isFollowing ? "followButton following" : "followButton";
 
-    if (showFollowButton && userLogginedIn._id != userData._id) {
+    if (showFollowButton && userLoggedIn._id != userData._id) {
         followButton = `<div class="followButtonContainer">
                           <button class="${buttonClass}" data-user="${userData._id}" >${text}</button>
                         </div>

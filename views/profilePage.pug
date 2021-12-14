@@ -14,6 +14,11 @@ block content
             .coverPhotoContainer
                 .userImageContainer 
                     img(src=profileUser.profilePic, alt="User Profile Image")
+
+                    if profileUser._id == userLoggedIn._id
+                        button.profilePictureButton(data-toggle="modal" , data-target="#imageUploadModal") 
+                            i.fas.fa-camera
+
             .profileButtonsContainer
                 if profileUser._id != userLoggedIn._id
                     a.profileButton(href=`/messages/${profileUser._id}`) 
@@ -40,6 +45,9 @@ block content
             +createTab("Replies", `/profile/${profileUser.username}/replies`, selectedTab == 'replies')
             //- +createTab("Replies", `/profile/${profileUser.username}/replies`, selectedTab == 'messages')
         .postsContainer
+
+        +createPostModals(userLoggedIn)
+        +createImageUploadModal()
 
 block scripts 
     script(src="/js/profile.js") 

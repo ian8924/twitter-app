@@ -16,6 +16,7 @@
     "express-session": "^1.17.2",
     "mongodb": "^4.1.0",
     "mongoose": "^5.13.7",
+    "multer": "^1.4.4",
     "pug": "^3.0.2"
   }
 }

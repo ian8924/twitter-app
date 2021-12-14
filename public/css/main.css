@@ -259,6 +259,10 @@ nav a:hover {
     margin-left: var(--spacing);
     position: absolute;
     bottom: -66px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .prfileHeaderContainer .userImageContainer img {
@@ -368,4 +372,15 @@ nav a:hover {
     padding: 0 var(--spacing);
     display: flex;
     justify-content: space-between;
+}
+
+.profilePictureButton {
+    position: absolute;
+    font-size: 50px;
+    color: rgba(0, 0, 0, 0.6);
+    display: none;
+}
+
+.userImageContainer:hover .profilePictureButton {
+    display: block;
 }
