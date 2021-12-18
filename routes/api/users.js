@@ -86,4 +86,25 @@ app.post("/profilePicture", upload.single("croppedImage"), async (req, res, next
         res.sendStatus(204);
     });
 });
+
+app.post("/coverPhoto", upload.single("croppedImage"), async (req, res, next) => {
+    if (!req.file) {
+        console.log("not get file");
+        return res.sendStatus(400);
+    }
+
+    var filePath = `/uploads/images/${req.file.filename}.jpeg`;
+    var tempPath = req.file.path;
+    var targetPath = path.join(__dirname, `../../${filePath}`);
+
+    fs.rename(tempPath, targetPath, async (err) => {
+        if (err != null) {
+            console.log(err);
+            return res.sendStatus(400);
+        }
+        req.session.user = await User.findByIdAndUpdate(req.session.user._id, { coverPhoto: filePath }, { new: true });
+        res.sendStatus(204);
+    });
+});
+
 module.exports = app;

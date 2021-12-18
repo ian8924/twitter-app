@@ -247,7 +247,7 @@ nav a:hover {
     flex: 1;
 }
 
-.prfileHeaderContainer .coverPhotoContainer {
+.prfileHeaderContainer .coverPhotoSection {
     height: 180px;
     background-color: var(--blue);
     position: relative;
@@ -374,13 +374,28 @@ nav a:hover {
     justify-content: space-between;
 }
 
-.profilePictureButton {
+.profilePictureButton,
+.coverPhotoButton {
     position: absolute;
     font-size: 50px;
     color: rgba(0, 0, 0, 0.6);
     display: none;
 }
 
-.userImageContainer:hover .profilePictureButton {
+.coverPhotoContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.userImageContainer:hover .profilePictureButton,
+.coverPhotoSection:hover .coverPhotoButton {
     display: block;
+}
+
+.coverPhotoContainer img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
